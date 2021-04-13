@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useContext } from "react";
+import ContactView from "./components/ContactView";
+import ContactNav from "./components/ContactNav";
+import { store } from "./store";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
+  const { dispatch } = useContext(store);
+
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_REQUEST",
+    });
+    fetch(API_URL)
+      .then((r) => {
+        if (r.ok) return r.json();
+        throw r;
+      })
+      .then((contacts) => {
+        dispatch({
+          type: "FETCH_SUCCESS",
+          payload: contacts,
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+        dispatch({
+          type: "FETCH_FAILURE",
+        });
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ContactNav />
+      <ContactView />
     </div>
   );
 }

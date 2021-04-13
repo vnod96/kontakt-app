@@ -1,38 +1,65 @@
+:root {
+  --header-height: 5rem;
+}
+
 .App {
-  text-align: center;
+  max-width: 1024px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 250px auto;
+  height: 100vh;
+  padding-inline: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.contact-list {
+  width: 30ch;
   display: flex;
   flex-direction: column;
+  margin: 0;
+}
+.contact-view {
+  margin-top: var(--header-height);
+  padding-inline: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+}
+.contact-info {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+}
+.contact-details .name {
+  margin-bottom: 0;
+}
+.contact-timeline {
+  padding-top: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.contact-timeline .timeline-item {
+  display: flex;
+  gap: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contact-timeline .year-range {
+  width: 150px;
+  text-align: end;
+}
+
+/* Overriding */
+img.ui.small.image {
+  height: 150px !important;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--header-height);
 }
